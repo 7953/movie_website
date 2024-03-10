@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 style="color: #FF5733; text-align: center;">Edit Profile</h2>
+  <form method="post" style="max-width: 400px; margin: 0 auto;">
+    {% csrf_token %}
+    <div style="margin-bottom: 15px;">
+      <label for="id_username" style="display: block; color: #FF5733; font-weight: bold;">Username:</label>
+      {{ form.username }}
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label for="id_email" style="display: block; color: #FF5733; font-weight: bold;">Email:</label>
+      {{ form.email }}
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label for="id_first_name" style="display: block; color: #FF5733; font-weight: bold;">First Name:</label>
+      {{ form.first_name }}
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label for="id_last_name" style="display: block; color: #FF5733; font-weight: bold;">Last Name:</label>
+      {{ form.last_name }}
+    </div>
+    <button type="submit" style="background-color: #FF5733; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Save Changes</button>
+  </form>
+{% endblock %}

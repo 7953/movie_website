@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff; /* Blue background */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            border: 2px solid #ff0000;/* Darker blue form background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Dark shadow */
+            width: 300px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0a0101; /* White text color */
+            margin-bottom: 30px;
+        }
+ 
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ff0202; /* Blue border */
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #ffffff; /* White background */
+            color: #1c4c6d; /* Blue text color */
+        }
+
+        input[type="submit"] {
+            background-color: #db2f2f; /* Blue background */
+            color: #0e0d0d; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #025081; /* Darker blue background on hover */
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #ff0909; /* Blue color for the link */
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline; /* Underline the link on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="messages" style="margin-bottom: 700px; position: absolute; color: #ff0000; font-size:20px">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="{{ message.tags }}" style="margin-bottom: 5px; padding: 10px;">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+<form action="{% url 'authentication:reg' %}" method="post">
+    {% csrf_token %}
+    <h2>Register</h2>
+    <input type="text" name="username" placeholder="Enter your UserName">
+    <input type="text" name="first_name" placeholder="Enter your FirstName">
+    <input type="text" name="last_name" placeholder="Enter your LastName">
+    <input type="email" name="email" placeholder="Enter your Email">
+    <input type="password" name="password" placeholder="Enter your Password">
+    <input type="password" name="password1" placeholder="Confirm your password">
+    <input type="submit" value="Register">
+    <div class="login-link">
+        <span>Already have an account? </span><a href="{% url 'authentication:login' %}">Login</a>
+    </div>
+</form>
+</body>
+</html>

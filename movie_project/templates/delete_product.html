@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <p style="color: #DE3163; margin-top: 20px;">Are you sure you want to delete the product '{{ product.name }}'? This action cannot be undone.</p>
+
+  <form method="post" style="margin-top: 20px;">
+    {% csrf_token %}
+    <button type="submit" style="background-color: #ff0000; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Yes, Delete</button>
+    <a href="{% url 'movie_app:allProdCat' %}" style="color: #ff0000; margin-left: 10px; text-decoration: none;">Cancel</a>
+
+  </form>
+
+  <style>
+    body {
+        background-color: #ffffff; /* Dark black background */
+        color: #DE3163; /* Text color */
+    }
+
+    .my_title {
+        color: #DE3163; /* Heading color */
+    }
+    input,textarea{
+    background-color: #333;
+
+    }
+  </style>
+  
+{% endblock %}
+

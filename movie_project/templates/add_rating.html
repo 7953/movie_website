@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+  <form method="post" style="max-width: 400px; margin: 0 auto; margin-top: 20px;">
+    {% csrf_token %}
+    <div style="margin-bottom: 15px;">
+      <label for="id_rating" style="display: block; color: #FF5733; font-weight: bold;">Rating:</label>
+      {{ form.rating }}
+    </div>
+  
+    <button type="submit" style="background-color: #FF5733; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit Rating</button>
+  </form>
+{% endblock %}

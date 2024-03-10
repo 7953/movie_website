@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff; /* Blue background */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            border: 2px solid #fa0000;; /* Darker blue form background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Dark shadow */
+            width: 300px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #f00303; /* Blue border */
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #ffffff; /* White background */
+            color: #1c4c6d; /* Blue text color */
+        }
+
+        input[type="submit"] {
+            background-color: #d32e2e; /* Blue background */
+            color: #0e0d0d; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #025081; /* Darker blue background on hover */
+        }
+
+        label {
+            color: #000000; /* Black text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="messages" style="margin-bottom: 400px; position: absolute; color: #DE3163; font-size:20px">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="{{ message.tags }}" style="margin-bottom: 5px; padding: 10px;">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    <form action="{% url 'authentication:login' %}" method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

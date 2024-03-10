@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body {
+            background-color: #ffffff; /* Dark black background */
+            color: #ff0000; /* Text color */
+        }
+
+        h2 {
+            color: #ff0000; /* Heading color */
+        }
+
+        form {
+           border: 2px solid #f80000;/* Light black field box */
+            padding: 20px;
+            margin: 20px;
+            
+        }
+
+        input {
+            border: 2px solid #f80000;/* Input text color */
+        }
+
+        button {
+            background-color: #ff0000; /* Button color */
+            color: #fff; /* Button text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c72626; /* Darker shade on hover */
+        }
+        input,textarea{
+            border: 2px solid #f80000;
+
+    }
+    </style>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Product</button>
+    </form>
+</body>
+</html>

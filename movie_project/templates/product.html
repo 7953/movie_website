@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {{ product.description|truncatewords:155 }}
+{% endblock %}
+{% block title %}
+    {% if category %}
+        {{ product.name }} -  Borcelle
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row my-4">
+        <div class="col-lg-6">
+            <img src="{{ product.poster.url }}" alt="{{ product.name }}" class="img-fluid">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="my-4">{{ product.name }}</h1>
+            <p class="category">{{ product.category_id }}</p>
+            <p class="description">{{ product.description }}</p>
+            {% if user == product.user %}
+                <div class="admin-actions">
+                    <a href="{% url 'movie_app:edit_product' id=product.id %}" class="btn btn-primary">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                    <a href="{% url 'movie_app:delete_product' id=product.id %}" class="btn btn-danger">Delete <i class="fa-solid fa-trash"></i></a>
+                </div><BR>
+            {% endif %}
+            <p><a href="{{ product.trailer_link }}" style="display: inline-block; padding: 10px 20px; background-color: rgb(240, 129, 3); color: #000000; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; transition: background-color 0.3s ease; font-weight: bolder;"><i class="fa-regular fa-circle-play"></i> Watch the Trailer</a></p>
+            <p class="average-rating">Average Rating: {{ product.average_rating }}</p>
+            <p class="total-ratings">Total Ratings: {{ product.total_ratings }}</p>
+            {% if user.is_authenticated %}
+                <div class="user-actions">
+                    <a href="{% url 'movie_app:add_comment' product_id=product.id %}" class="btn btn-success">Add Comment <i class="fa-regular fa-comment"></i></a>
+                    <a href="{% url 'movie_app:add_rating' product_id=product.id %}" class="btn btn-info">Add Rating <i class="fa-regular fa-star"></i></a>
+                </div><br>
+            {% endif %}
+            <h3 class="comments-title">Comments</h3>
+            <div class="comments" style="background-color: #e2d9d9; padding: 20px; border-radius: 5px; margin-top: 20px;">
+                {% for comment in product.comment_set.all %}
+                <div class="comment" style="margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 15px;">
+                    <p class="text" style="font-size: 16px; color: #333;">{{ comment.text }}</p>
+                    <p class="user" style="font-size: 14px; color: #666;">- {{ comment.user.username }} at {{ comment.created_at }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

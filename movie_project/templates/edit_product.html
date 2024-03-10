@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data" style="margin-bottom: 100px; padding: 20px; background-color: #fcfcfc; border: 2px solid  #e60a0a;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color:#e60a0a; color: #fff; padding: 10px 20px; border: none; cursor: pointer;">Save Changes</button>
+
+  </form>
+
+  <style>
+    body {
+        background-color: #ffffff; /* Dark black background */
+        color: #ff0000; /* Text color */
+    }
+
+    .my_title {
+        color: #000000; /* Heading color */
+    }
+
+    form {
+        margin-top: 20px;
+    }
+     input,textarea{
+    background-color: #ffffff;
+    border: 2px solid  #e60a0a;
+
+    }
+  </style>
+{% endblock %}
